@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const Advertisement = ({ title, description, contact, imageUrl }) => {
   return (
     <div style={styles.adContainer}>

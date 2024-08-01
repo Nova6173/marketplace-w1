@@ -1,5 +1,8 @@
 import React from 'react';
-import logo from './Assets/litendrake.jpg';
+import logo from '../../assets/litendrake.jpg';
+
+
+
 
 const Navbar = ({ view, setView }) => {
   const navItems = [
