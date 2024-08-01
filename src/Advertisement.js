@@ -1,10 +1,9 @@
 import React from 'react';
 
-const Advertisement = ({ title, description, contact }) => {
+const Advertisement = ({ title, description, contact, imageUrl }) => {
   return (
     <div style={styles.adContainer}>
-      <div style={{ ...styles.imagePlaceholder, backgroundImage: `url(${process.env.PUBLIC_URL}/images/AdvertisementImages/airpods-7001663_1280.jpg)` }}>
-       
+      <div style={{ ...styles.imagePlaceholder, backgroundImage: `url(${imageUrl})` }}>
       </div>
       <h3>{title}</h3>
       <p>{description}</p>
@@ -27,17 +26,18 @@ const styles = {
     alignItems: 'center',
   },
   imagePlaceholder: {
-    width: '150px',
-    height: '150px',
-    backgroundColor: '#eee',
+    width: '150px', // Bildens bredd
+    height: '150px', // Bildens höjd
+    backgroundColor: '#eee', // Bakgrundsfärg innan bild laddas
     marginBottom: '10px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     fontSize: '14px',
     color: '#999',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
+    backgroundSize: 'cover', // Gör att bilden täcker hela platsen utan att förvrängas
+    backgroundPosition: 'center', // Centrerar bilden
+    backgroundRepeat: 'no-repeat', // Förhindrar att bilden upprepas
   },
   button: {
     backgroundColor: '#007bff',
@@ -48,5 +48,6 @@ const styles = {
     cursor: 'pointer',
   }
 };
+
 
 export default Advertisement;
