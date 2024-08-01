@@ -2,6 +2,14 @@ import React from 'react';
 import logo from './Assets/litendrake.jpg';
 
 const Navbar = ({ view, setView }) => {
+  const navItems = [
+    { label: 'Home', value: 'home' },
+    { label: 'About', value: 'about' },
+    { label: 'Contact', value: 'contact' },
+    { label: 'Login', value: 'login' },
+    { label: 'Sign Up', value: 'signup' }
+  ];
+
   return (
     <nav style={styles.navbar}>
       <div style={styles.logoContainer}>
@@ -9,46 +17,16 @@ const Navbar = ({ view, setView }) => {
         <span style={styles.logoText}>My Marketplace</span>
       </div>
       <ul style={styles.navLinks}>
-        <li>
-          <button
-            style={{ ...styles.link, ...(view === 'home' ? styles.activeLink : {}) }}
-            onClick={() => setView('home')}
-          >
-            Home
-          </button>
-        </li>
-        <li>
-          <button
-            style={{ ...styles.link, ...(view === 'about' ? styles.activeLink : {}) }}
-            onClick={() => setView('about')}
-          >
-            About
-          </button>
-        </li>
-        <li>
-          <button
-            style={{ ...styles.link, ...(view === 'contact' ? styles.activeLink : {}) }}
-            onClick={() => setView('contact')}
-          >
-            Contact
-          </button>
-        </li>
-        <li>
-          <button
-            style={{ ...styles.link, ...(view === 'login' ? styles.activeLink : {}) }}
-            onClick={() => setView('login')}
-          >
-            Login
-          </button>
-        </li>
-        <li>
-          <button
-            style={{ ...styles.link, ...(view === 'signup' ? styles.activeLink : {}) }}
-            onClick={() => setView('signup')}
-          >
-            Sign Up
-          </button>
-        </li>
+        {navItems.map(item => (
+          <li key={item.value}>
+            <button
+              style={{ ...styles.link, ...(view === item.value ? styles.activeLink : {}) }}
+              onClick={() => setView(item.value)}
+            >
+              {item.label}
+            </button>
+          </li>
+        ))}
       </ul>
     </nav>
   );
