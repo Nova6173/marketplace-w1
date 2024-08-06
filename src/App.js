@@ -22,14 +22,14 @@ function App() {
     home: <Marketplace addToCart={addToCart} />,
     about: <h2>About Us</h2>,
     contact: <h2>Contact Us</h2>,
-    cart: <Cart cartItems={cartItems} removeFromCart={removeFromCart} />,
+    cart: <Cart cartItems={cartItems} removeFromCart={removeFromCart} />,  // Cart component
     login: <h2>Login Page</h2>,
     signup: <h2>Sign Up Page</h2>
   };
 
   return (
     <div>
-      <Navbar view={view} setView={setView} />
+      <Navbar view={view} setView={setView} cartItems={cartItems} />  {/* Skicka cartItems till Navbar */}
       {views[view]}
       <Footer />
     </div>

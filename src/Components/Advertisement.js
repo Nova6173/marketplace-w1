@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from './Modal';
 
-const Advertisement = ({ title, description, imageUrl, fullDescription, contact, price }) => {
+const Advertisement = ({ title, description, imageUrl, fullDescription, contact, price, addToCart }) => {
   const [showModal, setShowModal] = useState(false);
   const [showContactForm, setShowContactForm] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -12,7 +12,7 @@ const Advertisement = ({ title, description, imageUrl, fullDescription, contact,
 
   const handleCloseModal = () => {
     setShowModal(false);
-    setShowContactForm(false);  // Stänger kontaktformuläret när modalen stängs
+    setShowContactForm(false);
   };
 
   const handleFormChange = (e) => {
@@ -25,7 +25,7 @@ const Advertisement = ({ title, description, imageUrl, fullDescription, contact,
   const handleSubmit = (e) => {
     e.preventDefault();
     alert(`Message sent! Name: ${formData.name}, Email: ${formData.email}, Message: ${formData.message}`);
-    setShowModal(false); // Stäng modalen efter inskickad form
+    setShowModal(false);
   };
 
   const toggleContactForm = () => {
@@ -37,15 +37,16 @@ const Advertisement = ({ title, description, imageUrl, fullDescription, contact,
       <div style={{ ...styles.imagePlaceholder, backgroundImage: `url(${imageUrl})` }}>
       </div>
       <h3>{title}</h3>
-      <p style={styles.price}>${price}</p> {/* Pris läggs till här */}
+      <p style={styles.price}>${price}</p>
       <p>{description}</p>
       <button style={styles.button} onClick={handleDetailsClick}>Details</button>
-
+      <button style={styles.addToCartButton} onClick={addToCart}>Add to Cart</button>  {/* Add to Cart knapp */}
+      
       {showModal && (
         <Modal show={showModal} onClose={handleCloseModal}>
           <h2>{title}</h2>
           <img src={imageUrl} alt={title} style={styles.modalImage} />
-          <p style={styles.modalPrice}>${price}</p> {/* Pris visas också i modalen */}
+          <p style={styles.modalPrice}>${price}</p>
           <p>{fullDescription}</p>
           <button style={styles.contactButton} onClick={toggleContactForm}>Contact Me</button>
           {showContactForm && (
@@ -133,6 +134,15 @@ const styles = {
   button: {
     backgroundColor: '#007bff',
     color: 'white',
+    border: 'none',
+    padding: '8px 12px',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    marginTop: '10px',
+  },
+  addToCartButton: {
+    backgroundColor: '#ffc107',
+    color: 'black',
     border: 'none',
     padding: '8px 12px',
     borderRadius: '4px',

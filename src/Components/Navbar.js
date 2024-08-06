@@ -1,17 +1,13 @@
 import React from 'react';
 import logo from '../assets/litendrake.jpg';
 
-
-
-
-
-const Navbar = ({ view, setView }) => {
+const Navbar = ({ view, setView, cartItems }) => {  // Lägg till cartItems som prop
   const navItems = [
     { label: 'Home', value: 'home' },
     { label: 'About', value: 'about' },
     { label: 'Contact', value: 'contact' },
     { label: 'Login', value: 'login' },
-    { label: 'Sign Up', value: 'signup' }
+    { label: 'Sign Up', value: 'signup' },
   ];
 
   return (
@@ -31,6 +27,14 @@ const Navbar = ({ view, setView }) => {
             </button>
           </li>
         ))}
+        <li>
+          <button
+            style={{ ...styles.link, ...(view === 'cart' ? styles.activeLink : {}) }}
+            onClick={() => setView('cart')}
+          >
+            Cart ({cartItems.length})  {/* Visa antal objekt i kundvagnen */}
+          </button>
+        </li>
       </ul>
     </nav>
   );

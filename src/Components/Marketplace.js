@@ -1,7 +1,7 @@
 import React from 'react';
 import Advertisement from './Advertisement';
 
-const Marketplace = () => {
+const Marketplace = ({ addToCart }) => {  // Ta emot addToCart som prop
   const ads = [
     {
       id: 1,
@@ -108,6 +108,7 @@ const Marketplace = () => {
             fullDescription={ad.fullDescription}
             contact={ad.contact}
             price={ad.price} // Skicka priset som prop
+            addToCart={() => addToCart(ad)}  // Skicka addToCart-funktionen som prop
           />
         ))}
       </div>
