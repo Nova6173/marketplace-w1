@@ -14,10 +14,8 @@ const styles = {
     color: 'white',
     textAlign: 'center',
     padding: '10px 0',
-    position: 'fixed', // Gör footern "sticky" längst ner på sidan
-    left: 0,
-    bottom: 0,
-    width: '100%',
+    width: '100%', // Behåll denna för att footern ska täcka hela sidans bredd
+    marginTop: 'auto', // Detta gör att footern hamnar längst ned om det finns annat innehåll
   },
 };
 
