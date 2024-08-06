@@ -1,9 +1,7 @@
 import React from 'react';
 
 const Modal = ({ show, onClose, children }) => {
-  if (!show) {
-    return null;
-  }
+  if (!show) return null;
 
   return (
     <div style={modalStyles.modalBackdrop}>
@@ -32,8 +30,10 @@ const modalStyles = {
     padding: '20px',
     borderRadius: '8px',
     position: 'relative',
-    width: '80%',
-    maxWidth: '400px',
+    width: '90%',
+    maxWidth: '500px',
+    maxHeight: '80%', // Justera höjden 
+    overflowY: 'auto', // Gör att innehållet blir rullbart om det är för stort för modalen
   },
   closeButton: {
     position: 'absolute',

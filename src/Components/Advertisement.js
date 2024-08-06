@@ -1,76 +1,24 @@
 import React, { useState } from 'react';
 import Modal from './Modal';
 
-const Advertisement = ({ title, description, contact, imageUrl }) => {
-  const [showDetails, setShowDetails] = useState(false);
+const Advertisement = ({ title, description, imageUrl, fullDescription, contact, price }) => {
   const [showModal, setShowModal] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+  const [showContactForm, setShowContactForm] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
-  const toggleDetails = () => {
-    setShowDetails(prevState => !prevState);
-    openNewWindow();
-  };
-
-  const openNewWindow = () => {
-    const newWindow = window.open("", "_blank", "width=600,height=400");
-    newWindow.document.write(`
-      <html>
-        <head>
-          <title>${title}</title>
-          <style>
-            body {
-              font-family: Arial, sans-serif;
-              padding: 20px;
-              line-height: 1.6;
-            }
-            h1 {
-              font-size: 24px;
-            }
-            p {
-              font-size: 16px;
-              margin-bottom: 20px;
-            }
-            button {
-              background-color: #007bff;
-              color: white;
-              border: none;
-              padding: 8px 12px;
-              border-radius: 4px;
-              cursor: pointer;
-              margin-top: 20px;
-            }
-          </style>
-        </head>
-        <body>
-          <h1>${title}</h1>
-          <p>${description}</p>
-          <p>Contact: ${contact}</p>
-          <button onclick="window.close()">Close</button>
-        </body>
-      </html>
-    `);
-    newWindow.document.close();
-  };
-
-  // Hämta första meningen av beskrivningen
-  const firstSentence = description.split('. ')[0] + '.';
-
-  const handleContactClick = () => {
+  const handleDetailsClick = () => {
     setShowModal(true);
   };
 
-  const handleModalClose = () => {
+  const handleCloseModal = () => {
     setShowModal(false);
+    setShowContactForm(false);  // Stänger kontaktformuläret när modalen stängs
   };
 
   const handleFormChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -80,53 +28,66 @@ const Advertisement = ({ title, description, contact, imageUrl }) => {
     setShowModal(false); // Stäng modalen efter inskickad form
   };
 
+  const toggleContactForm = () => {
+    setShowContactForm(!showContactForm);
+  };
+
   return (
     <div style={styles.adContainer}>
       <div style={{ ...styles.imagePlaceholder, backgroundImage: `url(${imageUrl})` }}>
       </div>
       <h3>{title}</h3>
-      <p>{firstSentence}</p>
-      <button style={styles.button} onClick={toggleDetails}>Details</button>
-      <button style={styles.contactButton} onClick={handleContactClick}>Contact Me</button>
-      
-      <Modal show={showModal} onClose={handleModalClose}>
-        <h2>Contact Seller</h2>
-        <form onSubmit={handleSubmit}>
-          <div style={styles.formGroup}>
-            <label>Name:</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleFormChange}
-              required
-              style={styles.input}
-            />
-          </div>
-          <div style={styles.formGroup}>
-            <label>Email:</label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleFormChange}
-              required
-              style={styles.input}
-            />
-          </div>
-          <div style={styles.formGroup}>
-            <label>Message:</label>
-            <textarea
-              name="message"
-              value={formData.message}
-              onChange={handleFormChange}
-              required
-              style={styles.textarea}
-            />
-          </div>
-          <button type="submit" style={styles.submitButton}>Send</button>
-        </form>
-      </Modal>
+      <p style={styles.price}>${price}</p> {/* Pris läggs till här */}
+      <p>{description}</p>
+      <button style={styles.button} onClick={handleDetailsClick}>Details</button>
+
+      {showModal && (
+        <Modal show={showModal} onClose={handleCloseModal}>
+          <h2>{title}</h2>
+          <img src={imageUrl} alt={title} style={styles.modalImage} />
+          <p style={styles.modalPrice}>${price}</p> {/* Pris visas också i modalen */}
+          <p>{fullDescription}</p>
+          <button style={styles.contactButton} onClick={toggleContactForm}>Contact Me</button>
+          {showContactForm && (
+            <form onSubmit={handleSubmit}>
+              <div style={styles.formGroup}>
+                <label>Name:</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleFormChange}
+                  required
+                  style={styles.input}
+                />
+              </div>
+              <div style={styles.formGroup}>
+                <label>Email:</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleFormChange}
+                  required
+                  style={styles.input}
+                />
+              </div>
+              <div style={styles.formGroup}>
+                <label>Message:</label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleFormChange}
+                  required
+                  style={styles.textarea}
+                />
+              </div>
+              <button type="submit" style={styles.submitButton}>Send Message</button>
+            </form>
+          )}
+          <button onClick={handleCloseModal} style={styles.closeButton}>Close</button>
+        </Modal>
+      )}
     </div>
   );
 };
@@ -138,7 +99,7 @@ const styles = {
     margin: '10px',
     textAlign: 'center',
     borderRadius: '8px',
-    width: '150px',
+    width: '200px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -157,6 +118,18 @@ const styles = {
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
   },
+  price: {
+    fontSize: '20px',
+    color: '#28a745',
+    fontWeight: 'bold',
+    margin: '10px 0',
+  },
+  modalPrice: {
+    fontSize: '24px',
+    color: '#28a745',
+    fontWeight: 'bold',
+    margin: '10px 0',
+  },
   button: {
     backgroundColor: '#007bff',
     color: 'white',
@@ -164,6 +137,12 @@ const styles = {
     padding: '8px 12px',
     borderRadius: '4px',
     cursor: 'pointer',
+    marginTop: '10px',
+  },
+  modalImage: {
+    width: '100%',
+    height: 'auto',
+    marginBottom: '10px',
   },
   contactButton: {
     backgroundColor: '#28a745',
@@ -172,7 +151,6 @@ const styles = {
     padding: '8px 12px',
     borderRadius: '4px',
     cursor: 'pointer',
-    textDecoration: 'none',
     marginTop: '10px',
   },
   formGroup: {
@@ -202,7 +180,16 @@ const styles = {
     borderRadius: '4px',
     cursor: 'pointer',
     marginTop: '10px',
-  }
+  },
+  closeButton: {
+    backgroundColor: '#dc3545',
+    color: 'white',
+    border: 'none',
+    padding: '8px 12px',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    marginTop: '10px',
+  },
 };
 
 export default Advertisement;
