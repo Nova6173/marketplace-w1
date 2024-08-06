@@ -13,9 +13,9 @@ const styles = {
     backgroundColor: '#333',
     color: 'white',
     textAlign: 'center',
-    padding: '10px 0',
-    width: '100%', // Behåll denna för att footern ska täcka hela sidans bredd
-    marginTop: 'auto', // Detta gör att footern hamnar längst ned om det finns annat innehåll
+    height: '30px', // Ställ in en specifik höjd för footern
+    lineHeight: '30px', // Vertikal centrering av texten
+    width: '100%',
   },
 };
 
