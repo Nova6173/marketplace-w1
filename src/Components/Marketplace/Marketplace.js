@@ -8,7 +8,7 @@ const Marketplace = () => {
       id: 1, 
       title: 'Smart Watch', 
       description: `
-        Selling a [Brand/Model] smartwatch in excellent condition. Features a sleek design, vibrant display, 
+        Selling a smartwatch in excellent condition. Features a sleek design, vibrant display, 
         and a variety of health and fitness tracking options, including heart rate monitoring and GPS. 
         Comes with the original charging cable and band. Lightly used with no visible wear or scratches. 
         Compatible with both iOS and Android. Perfect for staying connected and tracking your activities on the go. 
@@ -41,7 +41,7 @@ const Marketplace = () => {
         out on a powerful machine at a great price.
       `, 
       contact: 'contact3@gmail.com', 
-      imageUrl: `${process.env.PUBLIC_URL}/images/AdvertisementImages/laptop-7263006_1280.png`
+      imageUrl: `${process.env.PUBLIC_URL}/images/AdvertisementImages/laptop-computer.jpg`
     },
     { 
       id: 4, 
@@ -54,7 +54,7 @@ const Marketplace = () => {
         A fantastic deal for a reliable and stylish smartphone!
       `, 
       contact: 'contact4@gmail.com', 
-      imageUrl: `${process.env.PUBLIC_URL}/images/AdvertisementImages/mobile-157065_1280.png`
+      imageUrl: `${process.env.PUBLIC_URL}/images/AdvertisementImages/doogee-v30t-1.jpg`
     },
     { 
       id: 5, 
@@ -80,7 +80,7 @@ const Marketplace = () => {
         to own a reliable and eco-friendly mode of transportation!
       `, 
       contact: 'contact6@gmail.com', 
-      imageUrl: `${process.env.PUBLIC_URL}/images/AdvertisementImages/old-man-2815675_1280.png`
+      imageUrl: `${process.env.PUBLIC_URL}/images/AdvertisementImages/scooter.jpg`
     },
   ];
 
