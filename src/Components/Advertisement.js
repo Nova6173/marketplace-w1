@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Modal from '../Modal/Modal';
+import Modal from './Modal';
 
 const Advertisement = ({ title, description, contact, imageUrl }) => {
   const [showDetails, setShowDetails] = useState(false);

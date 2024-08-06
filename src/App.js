@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Navbar from './Components/Navbar/Navbar';
-import Marketplace from './Components/Marketplace/Marketplace';
-import Footer from './Components/Footer/Footer';
+import Navbar from './Components/Navbar';
+import Marketplace from './Components/Marketplace';
+import Footer from './Components/Footer';
 
 function App() {
   const [view, setView] = useState('home');

@@ -1,5 +1,6 @@
 import React from 'react';
-import Advertisement from '../Advertisement/Advertisement';
+import Advertisement from './Advertisement';
+
 
 
 const Marketplace = () => {

@@ -1,5 +1,6 @@
 import React from 'react';
-import logo from '../../assets/litendrake.jpg';
+import logo from '../assets/litendrake.jpg';
+
 
 
 
